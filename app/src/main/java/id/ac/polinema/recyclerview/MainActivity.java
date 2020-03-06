@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void handleGridButton(View view) {
+		Intent intent = new Intent(this, GridActivity.class);
+		startActivity(intent);
 	}
 
 	public void handleViewTypeButton(View view) {
