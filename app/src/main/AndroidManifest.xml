@@ -17,6 +17,7 @@
         <activity android:name=".GridActivity" />
         <activity android:name=".LogoActivity" />
         <activity android:name=".SimpleActivity" />
+        <activity android:name=".ExerciseActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
