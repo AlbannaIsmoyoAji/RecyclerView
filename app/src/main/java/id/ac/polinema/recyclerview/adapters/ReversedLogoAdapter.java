@@ -10,20 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import id.ac.polinema.recyclerview.R;
-import id.ac.polinema.recyclerview.ViewTypeActivity;
 import id.ac.polinema.recyclerview.models.TeamLogo;
 
-public class ReversedLogoAdapter extends RecyclerView.Adapter<ReversedLogoAdapter.ViewHolder>{
+public class ReversedLogoAdapter extends RecyclerView.Adapter<ReversedLogoAdapter.ViewHolder> {
 
-    private static final int LOGO_LEFT = 1;
-    private static final int LOGO_RIGHT = 2;
     private Context context;
     private List<TeamLogo> items;
+    private static final int LOGO_LEFT = 1;
+    private static final int LOGO_RIGHT = 2;
+
 
     public ReversedLogoAdapter(Context context, List<TeamLogo> items) {
         this.context = context;
@@ -32,7 +32,7 @@ public class ReversedLogoAdapter extends RecyclerView.Adapter<ReversedLogoAdapte
 
     @NonNull
     @Override
-    public ReversedLogoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == LOGO_LEFT) {
             view = LayoutInflater.from(context)
@@ -45,16 +45,16 @@ public class ReversedLogoAdapter extends RecyclerView.Adapter<ReversedLogoAdapte
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return (position % 2 == 0) ? LOGO_RIGHT : LOGO_LEFT;
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        TeamLogo item = items.get(position);
+        // Atur image di baris ini, dapat menggunakan Picasso atau Glide
+        holder.nameText.setText(item.getName());
+        Picasso.get().load(item.getLogo()).into(holder.logoImage);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReversedLogoAdapter.ViewHolder holder, int position) {
-        TeamLogo item = items.get(position);
-        // Atur image di baris ini, dapat menggunakan Picasso atau Glide
-        Glide.with(context).load(item.getLogo()).into(holder.logoImage);
-        holder.nameText.setText(item.getName());
+    public int getItemViewType(int position) {
+        return (position % 2 == 0) ? LOGO_RIGHT : LOGO_LEFT;
     }
 
     @Override
@@ -63,8 +63,8 @@ public class ReversedLogoAdapter extends RecyclerView.Adapter<ReversedLogoAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView logoImage;
-        TextView nameText;
+        public TextView nameText;
+        public ImageView logoImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

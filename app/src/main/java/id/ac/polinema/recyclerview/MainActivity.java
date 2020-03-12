@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void handleLogoButton(View view) {
-		Intent intent =  new Intent(this, LogoActivity.class);
+		Intent intent = new Intent(this, LogoActivity.class);
 		startActivity(intent);
 	}
 
@@ -30,5 +30,17 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void handleViewTypeButton(View view) {
+		Intent intent = new Intent(this, ViewTypeActivity.class);
+		startActivity(intent);
 	}
+
+	public void handleExerciseButton(View view) {
+		Intent intent = new Intent(this, LatihanActivity.class);
+		startActivity(intent);
+	}
+
+    public void handleFastAdapter(View view) {
+		Intent intent = new Intent(this, FastAdapterActivity.class);
+		startActivity(intent);
+    }
 }

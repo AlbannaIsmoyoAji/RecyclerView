@@ -1,10 +1,13 @@
 package id.ac.polinema.recyclerview.models;
 
 public class TeamLogo {
+
     public String logo;
     public String name;
 
-    public TeamLogo(String s, String liverpool) {
+    public TeamLogo(String logo, String name) {
+        this.logo = logo;
+        this.name = name;
     }
 
     public String getLogo() {

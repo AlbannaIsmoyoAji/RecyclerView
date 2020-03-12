@@ -10,18 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import id.ac.polinema.recyclerview.GridActivity;
 import id.ac.polinema.recyclerview.R;
 import id.ac.polinema.recyclerview.models.TeamLogo;
 
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>{
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     private Context context;
     private List<TeamLogo> items;
+
+    ImageView logoImage;
+    TextView nameText;
 
     public GridAdapter(Context context, List<TeamLogo> items) {
         this.context = context;
@@ -30,18 +32,18 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>{
 
     @NonNull
     @Override
-    public GridAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_logo, parent, false);
+                .inflate(R.layout.item_grid, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GridAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TeamLogo item = items.get(position);
         // Atur image di baris ini, dapat menggunakan Picasso atau Glide
-        Glide.with(context).load(item.getLogo()).into(holder.logoImage);
         holder.nameText.setText(item.getName());
+        Picasso.get().load(item.getLogo()).into(holder.logoImage);
     }
 
     @Override
@@ -50,8 +52,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView logoImage;
-        TextView nameText;
+        public TextView nameText;
+        public ImageView logoImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
